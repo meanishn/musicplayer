@@ -7,6 +7,7 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js'
   },
+  devtool: 'source-map',
   module: {
     loaders: [{
       exclude: /node_modules/,
@@ -14,6 +15,9 @@ module.exports = {
       query: {
         presets: ['react', 'es2015', 'stage-1']
       }
+    }, {
+      test: /\.scss$/,
+      loaders: ['style', 'css', 'sass']
     }]
   },
   resolve: {
