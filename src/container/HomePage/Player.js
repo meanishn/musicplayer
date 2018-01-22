@@ -3,20 +3,35 @@ import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 import ReactAplayer from '../../lib/react-aplayer';
 import PlayList from './PlayList';
-
+import {VelocityTransitionGroup, VelocityComponent} from 'velocity-react';
 
 import {addToPlayList, selectMusic} from './actions';
 
 class Player extends Component{
     constructor(props) {
         super(props);
+        this.state = {
+            showPlaylist: false
+        }
         this.onPlay = this.onPlay.bind(this);
         this.onMusicSelect = this.onMusicSelect.bind(this);
-
-        this.counter=1;
+        this.onPlayerLoaded = this.onPlayerLoaded.bind(this);
+        this.onClickPlaylistMenu = this.onClickPlaylistMenu.bind(this);
     }
     componentDidMount() {
         this.props.addToPlayList();
+    }
+
+    onClickPlaylistMenu(e) {
+        this.setState({
+            showPlaylist: !this.state.showPlaylist
+        });
+    }
+
+    onPlayerLoaded() {
+        console.log('Player Loaded');
+        const playListMenu = document.querySelector('.aplayer-icon-menu');
+        playListMenu.addEventListener('click', this.onClickPlaylistMenu);
     }
 
     onPlay() {
@@ -42,15 +57,21 @@ class Player extends Component{
             narrow: false,
             autoplay: false,
             mutex: true,
-            mode: 'random',
+            mode: 'order',
+            theme: '#1b1e21',
             music: this.props.playList
         };
         return (
             <div>
-                <PlayList playList={this.props.playList} currentPlaying={this.props.currentMusic} onMusicSelect={this.onMusicSelect}/>
+                <VelocityTransitionGroup component="div" enter={{animation: 'slideDown'}} leave={{animation: 'slideUp'}} runOnMount>
+                    {this.state.showPlaylist ? 
+                        <PlayList togglePlaylist={this.onClickPlaylistMenu} playList={this.props.playList} currentPlaying={this.props.currentMusic || this.props.playList[0]} onMusicSelect={this.onMusicSelect}/>    
+                    : undefined}
+                </VelocityTransitionGroup> 
+                
                 {defaults.music[0] ? 
                     <div className="custom-player">
-                        <ReactAplayer {...defaults} onPlay={this.onPlay} onPause={this.pauseHandler} ref={(ap) => {this.aplayer = this.aplayer || ap.state.control}}/>
+                        <ReactAplayer {...defaults} onLoaded={this.onPlayerLoaded} onPlay={this.onPlay} onPause={this.pauseHandler} ref={(ap) => {this.aplayer = this.aplayer || ap.state.control}}/>
                     </div>
                     : <div />
                 }

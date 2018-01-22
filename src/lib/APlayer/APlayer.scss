@@ -55,7 +55,7 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
     margin: 5px;
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
     border-radius: 2px;
-    overflow: hidden;
+    // overflow: hidden;
     user-select: none;
     line-height: initial;
 
@@ -90,7 +90,8 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
         position: relative;
         float: left;
         height: $aplayer-height;
-        width: $aplayer-height;
+        width: 120px;
+        margin-right: 20px;
         // background-image: url("./default.jpg");
         background-size: 100%;
         transition: all 0.3s ease;
@@ -100,10 +101,15 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
             border-radius: 50%;
             opacity: 0.8;
             cursor: pointer;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 26px;
+            height: 26px;
+            border: 2px solid #fff;
             text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
             box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
             background: rgba(0, 0, 0, 0.2);
-            transition: all 0.1s ease;
+            transition: opacity 0.2s ease;
             &:hover {
                 opacity: 1;
             }
@@ -111,19 +117,18 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
             .aplayer-fill {
                 fill: #fff;
             }
+            .aplayer-icon > i {
+                color: #fff;
+            }
         }
 
         .aplayer-hide {
             display: none;
         }
 
-        .aplayer-play {
-            width: 26px;
-            height: 26px;
-            border: 2px solid #fff;
-            bottom: 50%;
-            right: 50%;
-            margin: 0 -15px -15px 0;
+        .aplayer-play {            
+            left: 50%;
+            transform: translate(-50%, -50%);
             .aplayer-icon-play {
                 position: absolute;
                 top: 3px;
@@ -145,6 +150,34 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
                 left: 2px;
                 height: 12px;
                 width: 12px;
+            }
+        }
+
+        .aplayer-next {
+            width: 26px;
+            height: 26px;
+            position: absolute;
+            right: 0;
+            .aplayer-icon-next {
+                position: absolute;
+                top: 3px;
+                left: 4px;
+                height: 20px;
+                width: 20px;
+            }
+        }
+
+        .aplayer-previous {
+            width: 26px;
+            height: 26px;
+            position: absolute;
+            left: 0;
+            .aplayer-icon-previous {
+                position: absolute;
+                top: 3px;
+                left: 4px;
+                height: 20px;
+                width: 20px;
             }
         }
     }
@@ -235,7 +268,10 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
                 .aplayer-time-inner {
                     vertical-align: middle;
                 }
-
+                &.aplayer-time-inner-left{
+                    padding-left: 0;
+                    padding-right: 10px;
+                }
                 .aplayer-icon {
                     cursor: pointer;
                     transition: all 0.2s ease;
@@ -284,24 +320,24 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
                     display: none;
                     position: absolute;
                     bottom: 15px;
-                    right: -3px;
+                    right: -5px;
                     width: 25px;
-                    height: 40px;
+                    height: 75px;
                     z-index: 99;
 
                     .aplayer-volume-bar {
                         position: absolute;
                         bottom: 0;
                         right: 10px;
-                        width: 5px;
-                        height: 35px;
-                        background: #aaa;
+                        width: 8px;
+                        height: 70px;
+                        background: #9E9E9E;
 
                         .aplayer-volume {
                             position: absolute;
                             bottom: 0;
                             right: 0;
-                            width: 5px;
+                            width: 8px;
                             transition: all 0.1s ease;
                         }
                     }
@@ -451,6 +487,31 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
                 }
             }
         }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .aplayer-container {
+        display: flex;
+        flex-wrap: wrap-reverse;
+        z-index: 1111;
+        box-sizing: border-box;
+        .aplayer-info {
+            width: 100%;
+            margin-left: 0;
+            height: 65px;
+        }
+        .hide-mobile {
+            display: none;
+        }
+        .d-mobile {
+            display: inline;
+        }
+        .aplayer-pic {
+            height: 45px;
+            margin: 0 auto;
+        }
+
     }
 }
 

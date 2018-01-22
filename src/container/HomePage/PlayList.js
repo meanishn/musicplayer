@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
-
+import {VelocityTransitionGroup, VelocityComponent} from 'velocity-react';
 export default class PlayList extends Component {
     constructor(props) {
         super(props);
@@ -14,10 +14,13 @@ export default class PlayList extends Component {
             if (activeItem) {
                 const currentOffest = activeItem.offsetTop;
                 const container = document.querySelector('.playlist-container');
-                window.setTimeout(() => container.scrollTop = currentOffest, 100);
+                this.scrollTimer = window.setTimeout(() => container.scrollTop = currentOffest, 500);
             }
         }
         
+    }
+    componentWillUnmount() {
+        window.clearTimeout(this.scrollTimer);
     }
     onMusicSelect(music) {
         this.props.onMusicSelect(music);
@@ -39,37 +42,77 @@ export default class PlayList extends Component {
         });
     }
     renderMiniPlaylist() {
+        const initialAnimation = {
+            opacity: 0,
+            height: 0
+        };
         return (
+
             <div className="media mini-playlist playlist-item active" onClick={() => this.setState({miniPlaylist: false})}>
                 <img className='d-flex mx-1 my-1 mr-3' src='http://via.placeholder.com/40X40' />
                 <div className="media-body">
-                    <small class="text-muted">Now Playing...</small>
-                    <h6 className='mt-0 mb-0'>{this.props.currentPlaying.title}</h6>
+                    {this.props.currentPlaying ? (
+                        <div>
+                            <small class="text-muted">Now Playing...</small>
+                            <h6 className='mt-0 mb-0'>{this.props.currentPlaying.title}</h6>
+                        </div>
+                        ): (
+                            <div>
+                                <small class="text-muted">Paused</small>
+                                <h6 className='mt-0 mb-0'>{this.props.playList.length ? this.props.playList[0].title : ''}</h6>
+                            </div>
+                        )
+                    }
                     {/* <small className='text-muted'>some description on the title</small> */}
                 </div>
             </div>
+
         );
     }
-    render() {
-        if (this.state.miniPlaylist) {
-            return this.renderMiniPlaylist();
-        } else {
-            return (
+    renderFullPlaylist () {
+        return (
+            
                 <div className="playlist-wrapper">
                     <div className="playlist-header py-1">
                         <div className="d-flex">
                             <h6 className="px-2 mt-2 mb-0 text-muted">PlayList</h6>
                             <div className="hide-playlist ml-auto mt-2 px-2"
-                                onClick={() => this.setState({miniPlaylist: true})}
-                            ><span className="glyphicon glyphicon-search" aria-hidden="true"></span></div>
+                                onClick={() => this.props.togglePlaylist()}
+                            >
+                                <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                Hide
+                            </div>
                         </div>
                     </div>                
                     <div className="list-unstyled playlist-container">
                         {this.renderPlayListItems()}
                     </div>
                 </div>
-            );
-        }
+            
+        );
+    }
+    render() {
+        const leave = {
+            animation: 'fadeOut'
+        };
+        const enter = {
+            animation: 'fadeIn',
+            display: 'flex',
+            delay: 200
+        };
+
+        return (
+            // <VelocityTransitionGroup component="div" enter={{animation: 'fadeIn'}} leave={{animation: 'fadeOut'}} runOnMount>
+            //     {this.props.showPlaylist ? this.renderFullPlaylist() : undefined}
+            // </VelocityTransitionGroup>
+            this.renderFullPlaylist()
+        )
+        
+        // return (
+        //     <VelocityTransitionGroup enter={{animation: "slideDown"}} leave={{animation: "slideUp"}}>
+        //         {this.state.miniPlaylist ? this.renderFullPlaylist() : null }
+        //     </VelocityTransitionGroup>
+        // );
         
     }
 }

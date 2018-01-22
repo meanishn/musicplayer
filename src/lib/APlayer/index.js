@@ -110,14 +110,14 @@ export default class APlayer {
         };
 
         // define APlayer events
-        const eventTypes = ['play', 'pause', 'canplay', 'playing', 'ended', 'error'];
+        const eventTypes = ['play', 'pause', 'canplay', 'playing', 'ended', 'error', 'loaded'];
         this.event = {};
         for (let i = 0; i < eventTypes.length; i++) {
             this.event[eventTypes[i]] = [];
         }
-        this.trigger = (type) => {
+        this.trigger = (type, data=null) => {
             for (let i = 0; i < this.event[type].length; i++) {
-                this.event[type][i]();
+                this.event[type][i](data);
             }
         };
 
@@ -145,12 +145,22 @@ export default class APlayer {
         
         // fill in HTML
         let eleHTML = `
-            <div class="container">
+            <div class="container aplayer-container">
             <div class="aplayer-pic" ${(this.music.pic ? (`style="background-image: url('${this.music.pic}');"`) : ``)}>
+                <div class="aplayer-button aplayer-previous">
+                    <button type="button" class="aplayer-icon aplayer-icon-previous">
+                        <i class="fa fa-step-backward"></i>
+                    </button>
+                </div>
                 <div class="aplayer-button aplayer-play">
                     <button type="button" class="aplayer-icon aplayer-icon-play">`
             +           this.getSVG('play')
             + `     </button>
+                </div>
+                <div class="aplayer-button aplayer-next">
+                    <button type="button" class="aplayer-icon aplayer-icon-next">
+                        <i class="fa fa-step-forward"></i>
+                    </button>
                 </div>
             </div>
             <div class="aplayer-info">
@@ -162,6 +172,9 @@ export default class APlayer {
                     <div class="aplayer-lrc-contents" style="transform: translateY(0); -webkit-transform: translateY(0);"></div>
                 </div>
                 <div class="aplayer-controller">
+                    <div class="aplayer-time aplayer-time-inner-left">
+                        <span class="aplayer-dtime d-mobile">00:05</span>
+                    </div>
                     <div class="aplayer-bar-wrap">
                         <div class="aplayer-bar">
                             <div class="aplayer-loaded" style="width: 0"></div>
@@ -172,10 +185,10 @@ export default class APlayer {
                     </div>
                     <div class="aplayer-time">
                         <span class="aplayer-time-inner">
-                            - <span class="aplayer-ptime">00:00</span> / <span class="aplayer-dtime">00:00</span>
+                            - <span class="aplayer-ptime">00:00</span> / <span class="aplayer-dtime hide-mobile">00:00</span>
                         </span>
                         <div class="aplayer-volume-wrap">
-                            <button type="button" class="aplayer-icon aplayer-icon-volume-down" ${this.isMobile ? 'style="display: none;"' : ''}>`
+                            <button type="button" class="aplayer-icon aplayer-icon-volume-down">`
             +                   this.getSVG('volume-down')
             + `             </button>
                             <div class="aplayer-volume-bar-wrap">
@@ -209,7 +222,6 @@ export default class APlayer {
                 </div>
             </div>`
         this.element.innerHTML = eleHTML;
-
         // hide mode button in arrow container
         if (this.element.offsetWidth < 300) {
             this.element.getElementsByClassName('aplayer-icon-mode')[0].style.display = 'none';
@@ -243,11 +255,21 @@ export default class APlayer {
         }
 
         // play and pause button
-        this.button = this.element.getElementsByClassName('aplayer-button')[0];
+        this.button = this.element.getElementsByClassName('aplayer-button')[1];
         this.button.addEventListener('click', (e) => {
             this.toggle();
         });
 
+        // Next and previous button
+        this.nextBtn = this.element.querySelector('.aplayer-next');
+        this.prevBtn = this.element.querySelector('.aplayer-previous');
+        this.nextBtn.addEventListener('click', (e) => {
+            this.next();
+        });
+
+        this.prevBtn.addEventListener('click', (e) => {
+            this.prev();
+        })
         // click music list: change music
         const list = this.element.getElementsByClassName('aplayer-list')[0];
         list.addEventListener('click', (e) => {
@@ -335,8 +357,8 @@ export default class APlayer {
         // control volume
         bar.volumeBar = this.element.getElementsByClassName('aplayer-volume')[0];
         const volumeBarWrap = this.element.getElementsByClassName('aplayer-volume-bar')[0];
-        this.volumeicon = this.element.getElementsByClassName('aplayer-time')[0].getElementsByTagName('button')[0];
-        const barHeight = 35;
+        this.volumeicon = this.element.getElementsByClassName('aplayer-time')[1].getElementsByTagName('button')[0];
+        const barHeight = 70;
         this.element.getElementsByClassName('aplayer-volume-bar-wrap')[0].addEventListener('click', (event) => {
             const e = event || window.event;
             let percentage = (barHeight - e.clientY + getElementViewTop(volumeBarWrap)) / barHeight;
@@ -557,11 +579,6 @@ export default class APlayer {
             this.ended = false;
             this.audio.addEventListener('ended', () => {
                 if (this.multiple) {
-                    if (this.isMobile) {
-                        this.ended = true;
-                        this.pause();
-                        return;
-                    }
                     if (this.audio.currentTime !== 0) {
                         if (this.mode === 'random') {
                             this.setMusic(this.nextRandomNum());
@@ -725,14 +742,14 @@ export default class APlayer {
         }
 
         // autoplay
-        if (this.option.autoplay && !this.isMobile) {
+        if (this.option.autoplay) {
             this.play();
         }
         this.option.autoplay = true;  // autoplay next music
 
-        if (this.isMobile) {
-            this.pause();
-        }
+        // if (this.isMobile) {
+        //     this.pause();
+        // }
     }
 
     /**
@@ -889,5 +906,27 @@ export default class APlayer {
         list.style.height = list.offsetHeight + 'px';
 
         this.getRandomOrder();
+    }
+
+    next() {
+        if (this.playIndex < this.option.music.length - 1) {
+            this.setMusic(++this.playIndex);
+        }
+        else {
+            this.ended = true;
+            this.pause();
+            this.trigger('ended');
+        }
+    }
+
+    prev() {
+        if (this.playIndex > 0) {
+            this.setMusic(--this.playIndex);
+        }
+        else {
+            this.ended = true;
+            this.pause();
+            this.trigger('ended');
+        }
     }
 }

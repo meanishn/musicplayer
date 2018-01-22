@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import APlayer from '../APlayer';
 
-const events = ['play', 'pause', 'playing', 'canplay', 'ended', 'error'];
+const events = ['play', 'pause', 'playing', 'canplay', 'ended', 'error', 'loaded'];
 const capitalize = function(str) {
   return str[0].toUpperCase() + str.slice(1);
 };
@@ -44,6 +44,7 @@ export default class ReactAplayer extends React.Component {
         ap.on(event, callback);
       }
     });
+    ap.trigger('loaded');
   }
 }
 
@@ -82,6 +83,7 @@ ReactAplayer.propTypes = {
   onPlaying: PropTypes.func,
   onEnded: PropTypes.func,
   onError: PropTypes.func,
+  onLoaded: PropTypes.func,
 };
 
 ReactAplayer.defaultProps = {

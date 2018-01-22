@@ -21,11 +21,12 @@ const Panel = (props) => {
     return (
         <div>
             <Card className="dark-card">
-                <CardHeader tag="h5">{props.header}</CardHeader>
+                <CardHeader tag="div">
+                    <h5 className="mb-0">{props.header}</h5>
+                    {props.viewAll ? <a className="btn btn-default">see more ></a> : null}
+                </CardHeader>                
                 <CardBody>
-                    <div className="inner-card-item">
-                        { innerCards }
-                    </div>
+                    {props.children}
                 </CardBody>
                 
             </Card>
