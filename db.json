@@ -1,0 +1,209 @@
+{
+    "artists": [
+      {
+        "id": 36215717,
+        "name": "Margret Armstrong",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/snowshade/128.jpg",
+        "public": [
+          "https://gideon.net",
+          "http://leone.info",
+          "http://keanu.net",
+          "https://theresa.name",
+          "https://stewart.org"
+        ]
+      },
+      {
+        "id": 19251749,
+        "name": "Everardo Skiles",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/anaami/128.jpg",
+        "public": [
+          "http://rosa.info",
+          "https://estefania.com",
+          "https://joe.name",
+          "http://marianne.com"
+        ]
+      },
+      {
+        "id": 30609075,
+        "name": "Jaida Borer",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/judzhin_miles/128.jpg",
+        "public": [
+          "http://oceane.net",
+          "http://lorna.org",
+          "http://kianna.com",
+          "http://elvie.name",
+          "https://hulda.name"
+        ]
+      },
+      {
+        "id": 46194073,
+        "name": "Juwan Wisozk",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/ryhanhassan/128.jpg",
+        "public": [
+          "http://doug.name",
+          "https://rosa.info",
+          "http://arne.info",
+          "https://kamron.com"
+        ]
+      },
+      {
+        "id": 6954404,
+        "name": "Chauncey Moen",
+        "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/nckjrvs/128.jpg",
+        "public": [
+          "http://celia.com",
+          "http://rudy.info",
+          "https://jackson.org"
+        ]
+      }
+    ],
+    "tracks": [
+      {
+        "id": 88068988,
+        "title": "Quia mollitia illo aut amet cum distinctio ducimus vero.",
+        "artistId": 36215717,
+        "url": "https://freesound.org/data/previews/426/426186_1391542-lq.mp3",
+        "tags": ["Relax", "Meditation"]
+      },
+      {
+        "id": 81260299,
+        "title": "Nihil vero aut quod architecto qui aut saepe nulla.",
+        "artistId": 36215717,
+        "url": "https://lionel.biz"
+      },
+      {
+        "id": 68078354,
+        "title": "Quia quasi dolor quod distinctio sequi iure esse nihil.",
+        "artistId": 36215717,
+        "url": "http://sidney.org"
+      },
+      {
+        "id": 85044378,
+        "title": "Et maxime dolorum.",
+        "artistId": 36215717,
+        "url": "https://norris.net"
+      },
+      {
+        "id": 17219455,
+        "title": "Reiciendis ab aut.",
+        "artistId": 36215717,
+        "url": "https://alfonzo.biz"
+      },
+      {
+        "id": 99096781,
+        "title": "Aspernatur molestias qui voluptatem dignissimos.",
+        "artistId": 36215717,
+        "url": "https://neil.name"
+      },
+      {
+        "id": 51154479,
+        "title": "Aperiam qui occaecati vel.",
+        "artistId": 36215717,
+        "url": "https://vicente.biz"
+      },
+      {
+        "id": 8343362,
+        "title": "Aut doloremque natus excepturi.",
+        "artistId": 36215717,
+        "url": "http://johan.name"
+      },
+      {
+        "id": 48327705,
+        "title": "Doloribus repellat eius impedit dicta a voluptatem odit.",
+        "artistId": 36215717,
+        "url": "https://aniya.net"
+      },
+      {
+        "id": 6788496,
+        "title": "Saepe sed nostrum alias ut nemo commodi autem tenetur.",
+        "artistId": 36215717,
+        "url": "https://loyal.name"
+      },
+      {
+        "id": 72628532,
+        "title": "Est fugit asperiores rerum unde est doloribus et.",
+        "artistId": 36215717,
+        "url": "http://madison.name"
+      },
+      {
+        "id": 70883594,
+        "title": "Architecto quam reiciendis.",
+        "artistId": 19251749,
+        "url": "https://lee.biz"
+      },
+      {
+        "id": 26341473,
+        "title": "Ut et inventore earum amet et ad consequuntur facere nam.",
+        "artistId": 36215717,
+        "url": "http://kelsie.name"
+      },
+      {
+        "id": 89185930,
+        "title": "Quibusdam fugit necessitatibus.",
+        "artistId": 36215717,
+        "url": "https://pascale.net"
+      },
+      {
+        "id": 38397697,
+        "title": "Velit tenetur ut similique beatae.",
+        "artistId": 36215717,
+        "url": "https://hobart.net"
+      },
+      {
+        "id": 98930654,
+        "title": "Odio ut sit laudantium et.",
+        "artistId": 36215717,
+        "url": "http://dimitri.com"
+      },
+      {
+        "id": 26441639,
+        "title": "Nostrum facilis cupiditate voluptas autem.",
+        "artistId": 36215717,
+        "url": "https://marco.name"
+      },
+      {
+        "id": 50203490,
+        "title": "Quaerat sit et inventore placeat sit vel ea molestias error.",
+        "artistId": 36215717,
+        "url": "http://lupe.name"
+      },
+      {
+        "id": 39193040,
+        "title": "Similique non fugit molestiae.",
+        "artistId": 36215717,
+        "url": "https://bennett.com"
+      },
+      {
+        "id": 9013859,
+        "title": "Qui vero et ut totam laborum.",
+        "artistId": 36215717,
+        "url": "http://elva.biz"
+      },
+      {
+        "id": 46988544,
+        "title": "Vitae ut quisquam ipsum est.",
+        "artistId": 36215717,
+        "url": "http://verner.biz"
+      },
+      {
+        "id": 62839778,
+        "title": "Voluptatem est dicta.",
+        "artistId": 36215717,
+        "url": "https://destinee.biz"
+      },
+      {
+        "id": 58504698,
+        "title": "Quia at doloribus.",
+        "artistId": 36215717,
+        "url": "http://willow.com"
+      }
+    ],
+    "playlists": [
+      {
+        "id": "12345",
+        "name": "some name of playlist",
+        "artistId": "36215717",
+        "tracks": ["81260299"]
+      }
+    ]
+  }
