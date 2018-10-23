@@ -314,7 +314,7 @@ function getFiltered(tracks, term) {
         return tracks;
     }
     return tracks.filter(track => {
-            return track.title.toLowerCase().indexOf(term.toLowerCase()) > -1 || track.tags.some(t => t.name.toLowerCase().includes(term.toLowerCase()))
+            return track.title.toLowerCase().indexOf(term.toLowerCase()) > -1 || (track.tags && track.tags.some(t => t.name.toLowerCase().includes(term.toLowerCase())))
         }
     )
 }

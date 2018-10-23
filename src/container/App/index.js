@@ -1,8 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch} from 'react-router-dom';
-import Weather from '../WeatherPage';
-import PostsIndex from '../PostPage/PostsIndex';
-import PostDetail from '../PostPage/PostDetail';
 import HomePage from '../HomePage';
 import Player from '../Player';
 import UserPlaylist from '../UserPlaylist';

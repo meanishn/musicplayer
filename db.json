@@ -63,7 +63,7 @@
         "title": "Quia mollitia illo aut amet cum distinctio ducimus vero.",
         "artistId": 36215717,
         "url": "https://freesound.org/data/previews/426/426186_1391542-lq.mp3",
-        "tags": ["Relax", "Meditation"]
+        "tags": [{"name": "Relax"}, {"name":"Meditation"}]
       },
       {
         "id": 81260299,

@@ -1,25 +1,26 @@
-# ReduxSimpleStarter
+# Music Player demo project
+sample music player application.
+- Browse Artists
+- Add to playlist
+- Reorder playlist items
+- Built in player
 
-Interested in learning [Redux](https://www.udemy.com/react-redux/)?
-
+The player is a fork of aplayer, modified to meet the needs of this project
 ### Getting Started
 
-There are two methods for getting started with this repo.
-
-#### Familiar with Git?
-Checkout this repo, install dependencies, then start the gulp process with the following:
+Checkout this repo, install dependencies, then start the webpack dev server as follow:
 
 ```
-> git clone https://github.com/StephenGrider/ReduxSimpleStarter.git
-> cd ReduxSimpleStarter
+> git clone https://github.com/meanishn/musicplayer.git
+> git checkout dev
 > npm install
 > npm start
 ```
 
-#### Not Familiar with Git?
-Click [here](https://github.com/StephenGrider/ReactStarter/releases) then download the .zip file.  Extract the contents of the zip file, then open your terminal, change to the project directory, and:
+For the demo purpose, there is a sample json data which can be used as a data source.
+Installing and running JSON server
 
 ```
-> npm install
-> npm start
+> npm install -g json-server
+> json-server -p 4000 db.json
 ```
