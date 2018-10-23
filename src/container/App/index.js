@@ -19,9 +19,6 @@ export default function App() {
               <Sidebar />
               <div className="main-area">
                 <Switch>
-                  <Route path="/weather" component={Weather} />
-                  <Route path="/posts/:id" component={PostDetail} />
-                  <Route path="/posts" component={PostsIndex} />
                   <Route path="/artists/:id" component={Artists} />
                   <Route path="/playlists" component={UserPlaylist} />
                   <Route path="/" component={HomePage} />

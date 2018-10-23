@@ -41,7 +41,7 @@ export default class extends React.Component{
         return (
             <div className="sidebar-wrapper">
                 <div className="brand">
-                    <h2>EROTICUP</h2>
+                    <h2>ListenUp</h2>
                 </div>
                 <div className="sidebar-content">
                     <div className="label">Discover</div>
