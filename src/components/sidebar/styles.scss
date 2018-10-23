@@ -11,14 +11,27 @@
         margin-bottom: 6px;
     }
 }
+.custom-sidebar {
+    box-shadow: 10px 0 40px -4px rgba(0,0,0,.3);
+}
 .sidebar-wrapper{
     height: 100%;
-    width: 200px;
+    width: 170px;
 
     .brand {
         padding: 15px;
-        background: #e5e5e5;
+        background: #2e3945;
         margin-bottom: 15px;
+        color: #f9f9f9;
+
+        h2{
+            font-size: 20px;
+            font-weight: 900;
+            font-style: italic;
+            font-family: cursive;
+            color: #8BC34A;
+        }
+         
     }
     .sidebar-content {
         .label {
@@ -30,17 +43,23 @@
         }
 
         .sidebar-nav {
-            padding: 5px 10px;
+            padding: 5px 0px;
             ul {
                 list-style-type: none;
                 padding-left: 0;
     
                 li {
                     margin-bottom: 2px;
-    
+                    padding: 10px;
+                    &.active {
+                        border-right: 5px solid #be198a;
+                        color: #be198a;
+                        background: rgba(250, 218, 244, 0.36);
+                    }
                     a {
                         display: block;
-                        height: 30px;
+                        
+                        // height: 30px;
                         font-size: 14px;
                         font-weight: 700;
                         text-decoration: inherit;
@@ -48,7 +67,7 @@
                     }
 
                     .icon {
-                        margin-right: 10px;
+                        margin-right: 2px;
                         width: 16px;
                         font-size: 14px;
                         display: inline-block;

@@ -7,11 +7,11 @@ import classnames from 'classnames';
 
 import Card from '../../components/Card';
 import SimpleModal from '../../components/SimpleModal';
-import {fetchArtist} from './actions';
 import Track from '../../components/track';
 import Tabs from './components/tabs';
 import ArtistPlaylist from './components/artistPlaylist';
 
+import {fetchArtist, filter} from './actions';
 import {setPlaylist, playTrack} from '../Player/actions';
 import {createPlaylist, addPlaylistItems} from '../../data/userPlaylist/actions';
 import {fetchArtistPlaylists} from '../../data/playlist/actions';
@@ -25,12 +25,15 @@ class ArtistDetail extends React.Component {
             checked: [],
             modal: false,
             userPlaylist: '',
-            activeTab: '1'
+            activeTab: '1',
+            searchText: '',
+            tracks: this.props.tracks
         }
         this.toggleModal = this.toggleModal.bind(this);
         this.playTrack = this.playTrack.bind(this);
         this.playTracks = this.playTracks.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onFilter = this.onFilter.bind(this);
         this.addToPlaylist = this.addToPlaylist.bind(this);
     }
 
@@ -41,6 +44,9 @@ class ArtistDetail extends React.Component {
         if (this.state.activeTab === '2' && this.state.activeTab !== prevState.activeTab) {
             this.props.fetchArtistPlaylists(this.props.artist.id);
         }
+    }
+    componentWillUnmount() {
+        this.props.filter('');
     }
     playTracks(tracks=[]) {
         this.props.setPlaylist(tracks);
@@ -79,6 +85,14 @@ class ArtistDetail extends React.Component {
                 [e.target.name]: e.target.value
             });
         }
+    }
+
+    onFilter(e) {
+        const term = e.target.value;
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+        this.props.filter(term);
     }
 
     setUserPlaylist(playlistId) {
@@ -174,11 +188,17 @@ class ArtistDetail extends React.Component {
                     <Route path="/artists/:artistId" render={() => {
                         return (
                             <div className="container artist-page">
-                            <div className="profile-box">
-                                <img src={this.props.artist.avatar} />
-                                <h2 className="artist-name">{this.props.artist.name}</h2>
+                            <div className="profile-box" style={{backgroundImage: `url('${this.props.artist.avatar}')`}}>
+                                {/* <img src={this.props.artist.avatar} /> */}
+                                
                                 
                                 <div>
+                                    <h2 className="artist-name">{this.props.artist.name}</h2>
+                                    <div className="public-links">
+                                        {this.props.artist.public_profiles && JSON.parse(this.props.artist.public_profiles).map(link =>
+                                            <a className="public-link" href={link}>{link}</a>
+                                        )}
+                                    </div>
                                     <Button
                                         className="playall-btn"
                                         onClick={() => this.playTracks(this.props.artist.tracks)}
@@ -198,15 +218,28 @@ class ArtistDetail extends React.Component {
                                         <span style={{marginRight: '0px'}}><i className="fa fa-plus" /></span>
                                         {/* <span>Add to Playlist</span> */}
                                     </Button>
-                                    <Tabs
+                                    <div className="search-filter-container">
+                                       
+                                        <input
+                                            name="searchText"
+                                            type="text"
+                                            placeholder="search by title or tags"
+                                            value={this.state.searchText}
+                                            onChange={this.onFilter}
+                                        />
+                                        <span className="fa fa-search">
+                                        
+                                        </span>
+                                    </div>
+                                    {/* <Tabs
                                         tabItems={tabItems}
                                         activeTab={this.state.activeTab}
                                         onClickTab={this.onClickTab.bind(this)}
-                                    />
+                                    /> */}
                                 </div>
                                 {this.state.activeTab === '1' &&
                                     <div className="tracks-container">
-                                        {this.props.artist.tracks.map(track => 
+                                        {this.props.tracks.map(track => 
                                             <Track
                                                 key={track.id}
                                                 currentTrack={track}
@@ -276,12 +309,29 @@ function selectPlaylist(state, artistId) {
     return artist.playlist.map(pid =>state.playlists.byId[pid]);
 }
 
+function getFiltered(tracks, term) {
+    if (!term)  {
+        return tracks;
+    }
+    return tracks.filter(track => {
+            return track.title.toLowerCase().indexOf(term.toLowerCase()) > -1 || track.tags.some(t => t.name.toLowerCase().includes(term.toLowerCase()))
+        }
+    )
+}
 
+function getTracks(state, artistId) {
+    const artist = state.artists.byId[artistId];
+    if (!artist || !artist.tracks) {
+        return [];
+    }
+    return getFiltered(artist.tracks, state.artists.filterTerm);
+}
 
 function mapStateToProps(state, props) {
     const artistId = props.match.params.id
     return {
         artist: state.artists.byId[artistId],
+        tracks: getTracks(state, artistId),
         artistPlaylists: selectPlaylist(state, artistId),
         userPlaylist: state.userPlaylist
     }
@@ -292,5 +342,6 @@ export default connect(mapStateToProps, {
     fetchArtistPlaylists,
     playTrack,
     createPlaylist,
-    addPlaylistItems
+    addPlaylistItems,
+    filter
 })(ArtistDetail);

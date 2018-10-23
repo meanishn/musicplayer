@@ -1,5 +1,7 @@
 .artist-page {
     .artist-name {
+        margin-bottom: 2px;
+        font-weight: 700;
         @media screen and (max-width: 600px){
             font-size: 16px;
         }
@@ -25,16 +27,29 @@
         margin: 0 auto;
         text-align: center;
         padding: 25px;
+        height: 200px;
         box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.04);
         // border-radius: 10px;
         // background: linear-gradient(to right, #ff512f, #dd2476);
-        background: rgba(25, 26, 44, 0.33);
+        // background: rgb(58, 78, 99);
         background-position: center;
         color: #fff;
         z-index: 1;
-
+        display: flex;
+        vertical-align: middle;
+        justify-content: center;
         img {
             border-radius: 50%;
+            max-width: 300px;
+        }
+
+        .public-links {
+            margin-bottom: 15px;
+
+            .public-link {
+                color: #fff;
+                font-size: 12px;
+            }
         }
     }
 
@@ -63,14 +78,59 @@
             overflow: hidden;
         }
     }
+    .tracks-container {
+        box-shadow: 0 4px 20px -2px rgba(0,0,0,.2);
+    }
     .action-container {
         display: flex;
         text-align: center;
         padding: 8px;
+        margin-top: 15px;
         margin-bottom: 15px;
         border-bottom: 1px solid #e9ecef;
         flex-wrap: wrap;
+        justify-content: space-between;
+        vertical-align: middle;
+        box-shadow: 0 4px 20px -2px rgba(0,0,0,.2);
+        .search-filter-container {
+            position: relative;
+            span {
+                display: block;
+                display: block;
+                position: absolute;
+                top: 12px;
+                right: 10px;
+            }
+            input {
+                height: 40px;
+                border: 1px solid #ededed;
+                width: 260px;
+                border-radius: 30px;
+                padding: 5px 10px;
+                // position: relative;
+                @media screen and (max-width: 400px){
+                    width: 230px;
+                }
+                &::before {
+                    content: "A";
+                    position: absolute;
+                    right: 5px;
 
+                }
+                &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+                    font-size: 12px;
+                  }
+                &::-moz-placeholder { /* Firefox 19+ */
+                    font-size: 12px;
+                }
+                &:-ms-input-placeholder { /* IE 10+ */
+                    font-size: 12px;
+                }
+                &:-moz-placeholder { /* Firefox 18- */
+                    font-size: 12px;
+                }
+            }
+        }
     }
 
     .playall-btn {
@@ -78,7 +138,8 @@
         height: 30px;
         font-size: 14px;
         line-height: 15px;
-        background-color: #f9f9f9;
+        background-color: #ee3b50;
+        color: #f9f9f9;
         border-radius: 30px;
     }
     .add-to-playlist-btn {
@@ -87,7 +148,7 @@
         height: 40px;
         width: 40px;
         box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.6);
-        margin-top: 5px;
+        // margin-top: 5px;
     }
 
     .inner-card-item {
@@ -107,6 +168,9 @@
     .modal-body {
         max-height: calc(100vh - 200px);
         overflow-y: auto;
+    }
+    .modal-content{
+        border: none;
     }
     .modal-footer {
         justify-content: center;

@@ -12,6 +12,7 @@ import AudioWaves from '../../components/AudioWaves';
 import {VelocityTransitionGroup, VelocityComponent} from 'velocity-react'
 
 import fetchArtists from './actions';
+import './styles.scss';
 
 class HompePage extends Component {
     componentDidMount() {
@@ -27,9 +28,15 @@ class HompePage extends Component {
                 {/* <div className="search-section">
                     <SearchBar />
                 </div> */}
+                <div className="row">
+                    <div className="info-panel">
+                        <h2>Listen and enjoy the audios from your favourite artist</h2>
+                        <small>please help and support by clicking here</small>
+                    </div>
+                </div>
                 <div className="row align-center">
                     <div className="col-md-12">
-                        <Panel header="Top Artists">
+                        <Panel header="Discover">
                             <div className="inner-card-item">
                                 {
                                     this.props.artists.allIds.map(id =>
@@ -37,7 +44,7 @@ class HompePage extends Component {
                                         <Card 
                                             key={id} 
                                             id={id} 
-                                            avatar={this.props.artists.byId[id].avatar} 
+                                            avatar={this.props.artists.byId[id].avatar}
                                             title={this.props.artists.byId[id].name}
                                             link={`/artists/${id}`}
                                         />

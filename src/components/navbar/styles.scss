@@ -2,8 +2,9 @@
     background: #e5e5e5;
     margin-left: 50px;
     z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.3) 10px 0px 40px -4px;
     @media screen and (min-width: 800px){
-        width: calc(100% - 200px);
+        width: calc(100% - 170px);
         margin-left: auto;
     }
 }

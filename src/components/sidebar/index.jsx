@@ -41,26 +41,30 @@ export default class extends React.Component{
         return (
             <div className="sidebar-wrapper">
                 <div className="brand">
-                    <h2>COMPANY</h2>
+                    <h2>EROTICUP</h2>
                 </div>
                 <div className="sidebar-content">
                     <div className="label">Discover</div>
                     <div className="sidebar-nav">
-                        <ul className="nav-items">
-                            <li>
+                        <ul className="nav-items"
+                            onClick={(event) => {
+                                console.log(event);
+                            }}
+                        >
+                            <li className={location.pathname === '/' ? 'active': ''}>
                                 <Link to="/">
                                     <i className="icon fa fa-home" />
                                     <span>Home</span>
                                 </Link>
                                 
                             </li>
-                            <li>
+                            <li className={location.pathname.match('/artists') ? 'active': ''}>
                                 <Link to="/artists">
                                 <i className="icon fa fa-headphones" />
                                     <span>Artists</span>
                                 </Link>
                             </li>
-                            <li>
+                            <li className={location.pathname.match('/playlists') ? 'active': ''}>
                                 <Link to="/playlists">
                                     <i className="icon fa fa-music" />
                                     <span>Playlists</span>
@@ -77,10 +81,12 @@ export default class extends React.Component{
         return (
             <Sidebar
                 sidebar={this.getSidebarContent()}
+                shadow={false}
+                sidebarClassName="custom-sidebar"
                 open={this.state.sidebarOpen}
                 onSetOpen={this.onSetSidebarOpen}
                 docked={this.state.docked}
-                styles={{ sidebar: { background: "white" } }}
+                styles={{ sidebar: { background: "white", boxShadow: "10px 0 40px -4px rgba(0,0,0,.3)"} }}
             >
                 <div className="hamburger-menu" onClick={() => this.onSetSidebarOpen(true)}>
                     <span></span>

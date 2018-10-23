@@ -49,7 +49,8 @@ export default class NavBar extends React.Component {
       
       <div className="top-nav fixed-top">
         <div>
-          <SearchBar />
+          {/* <SearchBar /> */}
+
         </div>
         
       </div>

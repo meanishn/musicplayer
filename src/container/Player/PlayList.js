@@ -34,8 +34,8 @@ export default class PlayList extends Component {
                 <li className={`${classNames.join(' ')}`} key={item.id} onClick={() => this.onMusicSelect(i)}>
                     <img className='d-flex mx-1 my-1 mr-3 img-icon' src='/track-item.png' />
                     <div className='media-body'>
-                        <h6 className='mt-1 mb-1'>{item.title}</h6>
-                        <small className='text-muted'>some description on the title</small>
+                        <div className="track-title">{item.title}</div>
+                        <small className='text-muted track-author'>{item.author}</small>
                     </div>
                 </li>
             );
@@ -75,7 +75,7 @@ export default class PlayList extends Component {
                 <div className="playlist-wrapper">
                     <div className="playlist-header py-1">
                         <div className="d-flex">
-                            <h6 className="px-2 mt-2 mb-0 text-muted">PlayList</h6>
+                            <h6 className="px-2 mt-2 mb-0">PlayList</h6>
                             <div className="hide-playlist ml-auto mt-2 px-2"
                                 onClick={() => this.props.togglePlaylist()}
                             >

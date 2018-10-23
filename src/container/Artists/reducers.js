@@ -28,7 +28,7 @@ export function artistReducer(state=initialState, action) {
                 },
                 allIds: [...new Set([...state.allIds, ...Object.keys(action.payload)])]
             }
-        case 'FETCH_ARTIST':
+        case 'FETCH_ARTIST':            
             return {
                 ...state,
                 byId: {
@@ -48,6 +48,11 @@ export function artistReducer(state=initialState, action) {
                         playlist: Object.keys(action.playlists)
                     }
                 }
+            }
+        case 'FILTER_TRACK':
+            return {
+                ...state,
+                filterTerm: action.payload
             }
         default:
             return state;

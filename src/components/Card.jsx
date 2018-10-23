@@ -31,13 +31,13 @@ export default (props) => {
                     <CardImg top width="100%" src={props.avatar} alt="Card image cap" />
                 }
                 {props.bgColor && 
-                    <div className="playlist-bg" style={{backgroundColor: props.bgColor, height: '100%', borderRadius: '10px'}}>
+                    <div className="playlist-bg" style={{backgroundColor: props.bgColor, height: '100px'}}>
                         <div className="title" style={styles.title}>{props.title}</div>
                     </div>
                 }
                 
             </div>            
-            <CardBody className="px-0 py-0 my-2 text-center">
+            <CardBody className="px-0 py-3 my-2 text-center">
                 <CardTitle tag="div">
                     <Link to={props.link}>
                         {props.title}

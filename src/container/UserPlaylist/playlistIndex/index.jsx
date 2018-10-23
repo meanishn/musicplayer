@@ -6,6 +6,7 @@ import FlatColors from 'flat-colors';
 // import {connect} from 'react-redux';
 
 import Card from '../../../components/Card';
+import './styles.scss';
 
 export default (props) => {
     if (!props.playlists) {
@@ -13,22 +14,24 @@ export default (props) => {
     }
     return (
         <div className="container user-playlist-container">
-            <h2 className="mb-5">Playlists</h2>
-            {/* <ArtistPlaylist
-                artistId={this.props.match.params.id}
-                playlists={this.props.artist.playlists}
-            /> */}
-            <div className="inner-card-item">
-            {props.playlists.map(playlist =>
-                <Link to={`/playlists/${playlist.id}`} >
-                    <Card 
-                        title={playlist.name}
-                        subtitle={playlist.tracks.length > 1 ? `${playlist.tracks.length} tracks` : `${playlist.tracks.length} track`}
-                        link={`/playlists/${playlist.id}`}
-                        bgColor={playlist.color[3]}
-                    />
-                </Link>
-            )}
+            <div className="wrapper">
+                <h2 className="mb-5">Playlists</h2>
+                {/* <ArtistPlaylist
+                    artistId={this.props.match.params.id}
+                    playlists={this.props.artist.playlists}
+                /> */}
+                <div className="inner-card-item">
+                {props.playlists.map(playlist =>
+                    <Link to={`/playlists/${playlist.id}`} >
+                        <Card 
+                            title={playlist.name}
+                            subtitle={playlist.tracks.length > 1 ? `${playlist.tracks.length} tracks` : `${playlist.tracks.length} track`}
+                            link={`/playlists/${playlist.id}`}
+                            bgColor={playlist.color[3]}
+                        />
+                    </Link>
+                )}
+                </div>
             </div>
         </div>
 

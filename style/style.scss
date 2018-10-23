@@ -10,8 +10,7 @@ $playerBg: #2e3945;
 $playerElementsColor: #fcfcfc;
 
 body {
-    background-color: #fff;
-    
+    background-color: #fff;    
     color: #90909d;
     font-family: "PT Sans", sans-serif;
 }
@@ -44,7 +43,7 @@ body {
 }
 
 .img-icon {
-    max-width: 64px;
+    max-width: 32px;
 }
 
 input[type="checkbox"]:focus, input[type="checkbox"]:active {
@@ -70,8 +69,8 @@ input[type="checkbox"]:checked:after {
     left: 2px;
 }
 .dark-card {
-    background: rgba(0, 0, 0, 0.01);
-    box-shadow: 0px 1px 5px rgba(0,0,0,0.09);
+    // background: rgba(0, 0, 0, 0.01);
+    // box-shadow: 0px 1px 5px rgba(0,0,0,0.09);
     // margin-right: 50px;
     border: 0;
 }
@@ -81,7 +80,7 @@ input[type="checkbox"]:checked:after {
     // background: #dedede;
     border-radius: 10px;
     margin: 0 auto;
-    height: 1px;
+    // height: 1px;
     min-height: 100px;
     img {
         // border-radius: 50%;
@@ -104,6 +103,7 @@ input[type="checkbox"]:checked:after {
         text-decoration: none;
         color: #626b74;
         position: relative;
+        font-weight: 700;
     }
 
     >a {
@@ -146,7 +146,7 @@ input[type="checkbox"]:checked:after {
     }
 }
 .inner-card-item .card {
-    width: 215px;
+    width: 300px;
     color: rgb(120, 129, 136);
     background: transparent;
     border: none;
@@ -159,18 +159,24 @@ input[type="checkbox"]:checked:after {
 .main-area {
     // margin-left: 400px;
     position: relative;
-    margin-top: 60px;
-    height: calc(100vh - 138px);
+    // margin-top: 60px;
+    height: calc(100vh - 78px);
     overflow-y: scroll;
     // padding-top: 30px;
-    padding-left: 200px;
+    padding-left: 170px;
     .container {
         width: 100%;
         max-width: 100%;
-        padding: 0;
+        // padding: 0;
     }
     @media (max-width: 800px) {
         padding-left: 0px;
+        margin-top: 60px;
+        height: calc(100vh - 139px);
+    }
+
+    @media (max-width: 600px) {
+        height: calc(100vh - 170px);
     }
 }
 
@@ -226,9 +232,10 @@ td:first-of-type, td:first-of-type > div {
 .playlist-header {
     height: 45px;
     overflow: hidden;
-    background: #dee2e6;
+    background: #2e3945;
     border-bottom: 1px solid rgba(128, 128, 128, 0.14);
     border-top: 1px solid rgba(128, 128, 128, 0.14);
+    color: #fff;
     // border-radius: 2px;
 }
 .hide-playlist {
@@ -249,6 +256,23 @@ td:first-of-type, td:first-of-type > div {
 }
 .playlist-item {
     cursor: pointer;
+    align-items: center;
+    vertical-align: middle;
+    padding: 5px;
+
+    &:hover {
+        background: #2e3945;
+    }
+    &:nth-of-type(even) {
+
+    }
+    .track-title {
+        font-size: 13px;
+    }
+
+    .track-author {
+        font-size: 11px;
+    }
 } 
 .playlist-item.active {
     background-color: #2e3740;
@@ -403,6 +427,7 @@ td:first-of-type, td:first-of-type > div {
         bottom: 110px;
         right: 0;
         max-width: 100%;
+        height: calc(100vh - 110px);
     }
 }
   @keyframes audio-wave {
@@ -417,7 +442,21 @@ td:first-of-type, td:first-of-type > div {
   
 
   .top-wrapper {
-    height: 100px;
+    height: 130px;
     background: #26284b;
-    padding: 10px 20px;
+    padding: 25px 35px;
+    color: #fff;
+    position: relative;
+    &:before {
+        content: " ";
+        position: absolute;
+        background: rgba(0,0,0,0.2);
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        
+    }
 }
