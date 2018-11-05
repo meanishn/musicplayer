@@ -1,0 +1,18 @@
+.artist-page.artist-playlist-page {
+    .action-container {
+        justify-content: space-between;
+        // margin-top: -10px;
+        
+        button {
+            margin-top: 10px;
+        }
+
+        .tracks-container {
+            box-shadow: 0 4px 20px -2px rgba(0,0,0,.2);
+        }
+    }
+    .playall-btn {
+        background-color: #ee3b50;
+        color: #fff;
+    }
+}

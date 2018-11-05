@@ -1,0 +1,11 @@
+.user-playlist-container {
+    
+    .wrapper {
+        padding: 15px;
+    }
+    .user-playlists {
+        >a {
+            display: flex;
+        }
+    }
+}
