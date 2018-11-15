@@ -43,7 +43,6 @@ export default class APlayer {
         // default options
         const defaultOption = {
             element: document.getElementsByClassName('aplayer')[0],
-            crossorigin: 'anonymous',
             narrow: false,
             autoplay: false,
             mutex: true,
@@ -501,6 +500,7 @@ export default class APlayer {
         // get this audio object
         if (!this.audios[indexMusic]) {
             this.audio = document.createElement("audio");
+            this.audio.crossOrigin = "anonymous";
             this.audio.src = this.music.url;
             this.audio.preload = this.option.preload ? this.option.preload : 'auto';
 
