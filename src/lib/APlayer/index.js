@@ -43,6 +43,7 @@ export default class APlayer {
         // default options
         const defaultOption = {
             element: document.getElementsByClassName('aplayer')[0],
+            crossorigin: 'anonymous',
             narrow: false,
             autoplay: false,
             mutex: true,
