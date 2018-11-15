@@ -47,6 +47,9 @@ module.exports = merge(common, {
         new MiniCssExtractPlugin({
             filename: "[name].[hash:8].css",
             chunkFilename: "[id].[hash:8].css"
+        }),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV' : JSON.stringify('production')
         })
         // new ManifestPlugin(),
         // new BundleAnalyzerPlugin({
