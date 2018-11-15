@@ -54,6 +54,9 @@ module.exports = {
         }),
     ],
     resolve: {
-        extensions: ['.js', '.jsx']
+        extensions: ['.js', '.jsx'],
+        alias: {
+            Services: path.resolve(__dirname, 'src/services')
+        }
     },
 }

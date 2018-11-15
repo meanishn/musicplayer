@@ -1,8 +1,8 @@
-import axios from 'axios';
+import client from 'Services/client';
 
 export function fetchArtist(artistId) {
     return async (dispatch) => {
-        const req = await axios.get(`http://localhost:4000/artists/${artistId}?_embed=tracks`);
+        const req = await client.get(`/artists/${artistId}?_embed=tracks`);
         const artist = req.data;
         
         dispatch({
