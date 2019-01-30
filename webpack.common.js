@@ -23,17 +23,17 @@ module.exports = {
                 exclude: [/node_modules/],
                 use: [{ loader: "babel-loader" }]
             },
-            {
-                test: /.*\.(gif|png|jpe?g|svg)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            name: 'images/[name]_[hash:7].[ext]',
-                        }
-                    },
-                ]
-            },
+            // {
+            //     test: /.*\.(gif|png|jpe?g|svg)$/i,
+            //     use: [
+            //         {
+            //             loader: 'file-loader',
+            //             options: {
+            //                 name: 'images/[name]_[hash:7].[ext]',
+            //             }
+            //         },
+            //     ]
+            // },
             {
                 test: /.*\.(gif|png|jp(e*)g)$/i,
                 use: [
@@ -41,7 +41,7 @@ module.exports = {
                         loader: "url-loader",
                         options: {
                             limit: 10000,
-                            name: "images/[name].[ext]"
+                            name: "[name].[ext]"
                         }
                     }
                 ]
