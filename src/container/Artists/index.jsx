@@ -10,6 +10,7 @@ import SimpleModal from '../../components/SimpleModal';
 import Track from '../../components/track';
 import Tabs from './components/tabs';
 import ArtistPlaylist from './components/artistPlaylist';
+import ArtistList from './components/artistList';
 
 import {fetchArtist, filter} from './actions';
 import {setPlaylist, playTrack} from '../Player/actions';
@@ -160,20 +161,6 @@ class ArtistDetail extends React.Component {
             );
         }
 
-        const tabItems = [
-            {
-                title: 'Tracks',
-                tabId: '1'
-            },
-            {
-                title: 'Playlists',
-                tabId: '2'
-            },
-            {
-                title: 'Series',
-                tabId: '3'
-            }
-        ];
         const extraProps = {playTrack: this.playTrack, playTracks: this.playTracks, onChange: this.onChange, addToPlaylist: this.addToPlaylist}
         return (
             <div>
@@ -189,8 +176,7 @@ class ArtistDetail extends React.Component {
                         return (
                             <div className="container artist-page">
                             <div className="profile-box" style={{backgroundImage: `url('${this.props.artist.avatar}')`}}>
-                                {/* <img src={this.props.artist.avatar} /> */}
-                                
+                                {/* <img src={this.props.artist.avatar} /> */}                                
                                 
                                 <div>
                                     <h2 className="artist-name">{this.props.artist.name}</h2>
@@ -282,6 +268,12 @@ class ArtistDetail extends React.Component {
                         </div>
                         );
                     }}/>
+
+                    <Route path="/artists" render={(props) => {
+                        <ArtistList
+                            {...props}
+                        />
+                    }} />
                     
                 </Switch>
                 <SimpleModal

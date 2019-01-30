@@ -9,10 +9,10 @@ module.exports = merge (common, {
     devServer: {
         port: 8001,
         historyApiFallback: true,
-        overlay: true,
-        open: true,
+        // overlay: true,
+        // open: true,
         stats: 'errors-only',
-        contentBase: './'
+        // contentBase: './'
     },
     module: {
         rules: [

@@ -10,12 +10,12 @@ module.exports = {
         path: path.resolve(__dirname, 'dist/'),
         publicPath: "/"
     },
-    devServer: {
-        port: 8001,
-        historyApiFallback: true,
-        overlay: true,
-        open: true,
-    },
+    // devServer: {
+    //     port: 8001,
+    //     historyApiFallback: true,
+    //     overlay: true,
+    //     open: true,
+    // },
     module: {
         rules: [
             {
