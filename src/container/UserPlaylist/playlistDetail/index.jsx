@@ -22,7 +22,7 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 export default (props) => {
     return (
-        <div className="container artist-page artist-playlist-page">
+        <div className="artist-page artist-playlist-page">
         <div className="top-wrapper" style={{backgroundColor : props.currentPlaylist.color[3]}}>
             <h2>{props.currentPlaylist.name}</h2>
             <span>{props.currentPlaylist.tracks.length} tracks</span>
