@@ -159,11 +159,11 @@ input[type="checkbox"]:checked:after {
 .main-area {
     // margin-left: 400px;
     position: relative;
-    // margin-top: 60px;
-    height: calc(100vh - 78px);
+    margin-top: 70px;
+    height: calc(100vh - 148px);
     overflow-y: scroll;
     // padding-top: 30px;
-    padding-left: 170px;
+    // padding-left: 170px;
     .container {
         width: 100%;
         max-width: 100%;
@@ -171,12 +171,11 @@ input[type="checkbox"]:checked:after {
     }
     @media (max-width: 800px) {
         padding-left: 0px;
-        margin-top: 60px;
-        height: calc(100vh - 139px);
+        // height: calc(100vh - 139px);
     }
 
     @media (max-width: 600px) {
-        height: calc(100vh - 170px);
+        height: calc(100vh - 182px);
     }
 }
 
@@ -427,7 +426,7 @@ td:first-of-type, td:first-of-type > div {
         bottom: 110px;
         right: 0;
         max-width: 100%;
-        height: calc(100vh - 110px);
+        height: calc(100vh - 200px);
     }
 }
   @keyframes audio-wave {

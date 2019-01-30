@@ -25,6 +25,7 @@ store.subscribe(throttle(() => {
   })
 }, 1000));
 
+console.log(process.env);
 ReactDOM.render(
   <Provider store={store}>
      <App /> 

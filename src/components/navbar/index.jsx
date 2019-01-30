@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 import SearchBar from '../SearchBar';
+import logoImage from '../../assets/images/logo.png'
 import './styles.scss';
 
 export default class NavBar extends React.Component {
@@ -48,9 +49,22 @@ export default class NavBar extends React.Component {
       // </div>
       
       <div className="top-nav fixed-top">
-        <div>
-          {/* <SearchBar /> */}
-
+        <NavbarBrand href="/" className="mr-auto">
+          <img src={logoImage} alt="logo"/>
+        </NavbarBrand>
+        <div className="menu-items">
+          <div className="menu-item">
+            <Link to="/">
+              <i className="icon fa fa-headphones circle-icon" />
+              <span className="d-none d-sm-inline">Artists</span>
+            </Link>
+          </div>
+          <div className="menu-item">
+            <Link to="/playlists">
+              <i className="icon fa fa-music circle-icon" />
+              <span className="d-none d-sm-inline">Playlist</span>
+            </Link>
+           </div>
         </div>
         
       </div>

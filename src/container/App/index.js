@@ -13,7 +13,7 @@ export default function App() {
           <div>
               <NavBar />
               <Player />
-              <Sidebar />
+              {/* <Sidebar /> */}
               <div className="main-area">
                 <Switch>
                   <Route path="/artists/:id" component={Artists} />
