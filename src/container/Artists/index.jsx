@@ -175,8 +175,8 @@ class ArtistDetail extends React.Component {
                     <Route path="/artists/:artistId" render={() => {
                         return (
                             <div className="container artist-page">
-                            <div className="profile-box" style={{backgroundImage: `url('${this.props.artist.avatar}')`}}>
-                                {/* <img src={this.props.artist.avatar} /> */}                                
+                            <div className="row profile-box" style={{backgroundImage: `url('')`}}>
+                                {/* <img src={this.props.artist.avatar} /> */}
                                 
                                 <div>
                                     <h2 className="artist-name">{this.props.artist.name}</h2>
