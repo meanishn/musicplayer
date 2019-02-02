@@ -61,6 +61,7 @@
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
     "shortid": "^2.2.8",
+    "trianglify": "^2.0.0",
     "velocity-react": "^1.3.3"
   }
 }

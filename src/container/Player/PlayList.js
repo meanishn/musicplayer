@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {bindActionCreators} from 'redux';
-import {VelocityTransitionGroup, VelocityComponent} from 'velocity-react';
+import TrackImage from '../../assets/images/play-button.png'
 export default class PlayList extends Component {
     constructor(props) {
         super(props);
@@ -32,7 +31,7 @@ export default class PlayList extends Component {
             active ? classNames.push('active'): classNames;
             return (
                 <li className={`${classNames.join(' ')}`} key={item.id} onClick={() => this.onMusicSelect(i)}>
-                    <img className='d-flex mx-1 my-1 mr-3 img-icon' src='/track-item.png' />
+                    <img className='d-flex mx-1 my-1 mr-3 img-icon' src={TrackImage} />
                     <div className='media-body'>
                         <div className="track-title">{item.title}</div>
                         <small className='text-muted track-author'>{item.author}</small>
@@ -79,8 +78,8 @@ export default class PlayList extends Component {
                             <div className="hide-playlist ml-auto mt-2 px-2"
                                 onClick={() => this.props.togglePlaylist()}
                             >
-                                <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
-                                Hide
+                                <span className="fa fa-times" aria-hidden="true"></span>
+                                
                             </div>
                         </div>
                     </div>                
