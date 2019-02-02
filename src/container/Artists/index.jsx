@@ -50,11 +50,17 @@ class ArtistDetail extends React.Component {
         this.props.filter('');
     }
     playTracks(tracks=[]) {
-        this.props.setPlaylist(tracks);
+        const tracksWithArtist = tracks.map(track => {
+            return {
+                ...track,
+                artist: this.props.artist.name
+            }
+        })
+        this.props.setPlaylist(tracksWithArtist);
     }
 
     playTrack(track) {
-        this.props.setPlaylist([track]);
+        this.playTracks([track]);
     }
 
     toggleModal() {
