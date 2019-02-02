@@ -3,7 +3,8 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-// const CleanWebpackPlugin = require('clean-webpack-plugin');
+const HtmlWebPackPlugin = require("html-webpack-plugin")
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 // const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 // const ManifestPlugin = require('webpack-manifest-plugin');
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -39,12 +40,19 @@ module.exports = merge(common, {
         runtimeChunk: false,
     },
     plugins: [
-        // new CleanWebpackPlugin([path.resolve(__dirname, 'dist/')], {
-        //     root: process.cwd(),
-        //     verbose: true,
-        //     dry: false
-        // }),
+        new CleanWebpackPlugin([path.resolve(__dirname, 'dist/')], {
+            root: process.cwd(),
+            verbose: true,
+            dry: false
+        }),
         // new OptimizeCssAssetsPlugin(),
+        new HtmlWebPackPlugin({
+            template: path.resolve(__dirname, 'index.ejs'),
+            env: {
+                production: true
+            },
+            inject: true
+        }),
         new MiniCssExtractPlugin({
             filename: "[name].[hash:8].css",
             chunkFilename: "[id].[hash:8].css"

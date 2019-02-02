@@ -49,9 +49,11 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebPackPlugin({
-            template: path.resolve(__dirname, 'index.html'),
-        }),
+        // new HtmlWebPackPlugin({
+        //     template: path.resolve(__dirname, 'index.ejs'),
+        //     environment: process.env.NODE_ENV,
+        //     inject: true
+        // }),
     ],
     resolve: {
         extensions: ['.js', '.jsx'],

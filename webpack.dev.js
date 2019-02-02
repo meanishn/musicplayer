@@ -2,7 +2,8 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-
+const HtmlWebPackPlugin = require('html-webpack-plugin')
+const path = require('path')
 module.exports = merge (common, {
     mode: 'development',
     devtool: 'inline-source-map',
@@ -34,6 +35,13 @@ module.exports = merge (common, {
         ]
     },
     plugins: [
+        new HtmlWebPackPlugin({
+            template: path.resolve(__dirname, 'index.ejs'),
+            env: {
+                development: true
+            },
+            inject: true
+        }),
         new MiniCssExtractPlugin({
             filename: "[name].[hash:8].css",
         }),        

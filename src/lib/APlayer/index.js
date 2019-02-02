@@ -483,7 +483,7 @@ export default class APlayer {
             this.element.getElementsByClassName('aplayer-pic')[0].style.backgroundImage = `url('${this.music.pic}')`;
         }
         this.element.getElementsByClassName('aplayer-title')[0].innerHTML = this.music.title;
-        this.element.getElementsByClassName('aplayer-author')[0].innerHTML = ` - ${this.music.author}`;
+        this.element.getElementsByClassName('aplayer-author')[0].innerHTML = ` - ${this.music.artist}`;
         if (this.element.getElementsByClassName('aplayer-list-light')[0]) {
             this.element.getElementsByClassName('aplayer-list-light')[0].classList.remove('aplayer-list-light');
         }
@@ -896,7 +896,7 @@ export default class APlayer {
                     <span class="aplayer-list-cur" style="background: ${this.option.theme};"></span>
                     <span class="aplayer-list-index">${this.option.music.length - newMusic.length + i + 1}</span>
                     <span class="aplayer-list-title">${newMusic[i].title}</span>
-                    <span class="aplayer-list-author">${newMusic[i].author}</span>
+                    <span class="aplayer-list-author">${newMusic[i].artist}</span>
                 </li>`
         }
         listEle.innerHTML += newItemHTML;
