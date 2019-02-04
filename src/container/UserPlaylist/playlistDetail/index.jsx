@@ -26,6 +26,17 @@ export default (props) => {
         <div className="top-wrapper" style={{backgroundColor : props.currentPlaylist.color[3]}}>
             <h2>{props.currentPlaylist.name}</h2>
             <span>{props.currentPlaylist.tracks.length} tracks</span>
+            <div className="remove-playlist-container">
+                <Button
+                    className="playall-btn"
+                    color="default"
+                    style={{backgroundColor: 'rgba(0,0,0,0.24)', marginTop: '10px'}}
+                    onClick={(e) => props.removePlaylist(props.match.params.playlistId)}
+                >
+                    Remove playlist
+                    <span style={{'margin-left': '10px'}}><i className="fa fa-times" /></span>
+                </Button>
+            </div>
         </div>
         <div className="tracks-wrapper">
             <div className="tracks-container">
@@ -44,6 +55,16 @@ export default (props) => {
                         color="default">Play all
                         <span style={{'margin-left': '10px'}}><i className="fa fa-play" /></span>
                     </Button>
+                    {props.showDeleteButton && 
+                        <Button
+                            className="playall-btn"
+                            style={{backgroundColor: '#9E9E9E'}}
+                            onClick={() => props.removePlaylistItems(props.match.params.playlistId)}
+                        > Delete
+                        <span style={{'margin-left': '10px'}}><i className="fa fa-times" /></span>
+                        </Button>
+                    }
+                    
                 </div>
                 <DragDropContext onDragEnd={(result) => props.onDragEnd(result, {playlistId: props.currentPlaylist.id})}>
                     <Droppable droppableId="droppable">
@@ -67,11 +88,12 @@ export default (props) => {
                                 {/* {item.title} */}
                                 
                                 <Track
-                                    showCheckbox={false}
+                                    showCheckbox={true}
                                     // key={item.id}
                                     currentTrack={item}
                                     title={item.title}
                                     playTrack={props.playTrack}
+                                    onChange={props.onChange}
                                 />
                                 </div>
                             )}

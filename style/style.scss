@@ -443,11 +443,12 @@ td:first-of-type, td:first-of-type > div {
   
 
   .top-wrapper {
-    height: 130px;
+    // height: 130px;
     background: #26284b;
     padding: 25px 35px;
     color: #fff;
     position: relative;
+    text-align: center;
     &:before {
         content: " ";
         position: absolute;

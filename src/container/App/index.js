@@ -8,14 +8,16 @@ import UserPlaylist from '../UserPlaylist';
 import NavBar from '../../components/navbar';
 import Artists from '../Artists';
 
-ReactGA.initialize('UA-133681031-1');
-ReactGA.pageview(window.location.pathname + window.location.search);
-
 const history = createHistory()
-history.listen((location, action) => {
-  ReactGA.set({ page: location.pathname });
-  ReactGA.pageview(location.pathname);
-});
+if (process.env.NODE_ENV === 'production') {
+  ReactGA.initialize('UA-133681031-1');
+  ReactGA.pageview(window.location.pathname + window.location.search);
+  
+  history.listen((location, action) => {
+    ReactGA.set({ page: location.pathname });
+    ReactGA.pageview(location.pathname);
+  });
+}
 
 export default function App() {
     return (
