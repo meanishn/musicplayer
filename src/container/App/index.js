@@ -1,15 +1,26 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch} from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
+import { Router, Route, Switch} from 'react-router-dom';
+import ReactGA from 'react-ga';
 import HomePage from '../HomePage';
 import Player from '../Player';
 import UserPlaylist from '../UserPlaylist';
 import NavBar from '../../components/navbar';
-import Sidebar from '../../components/sidebar';
 import Artists from '../Artists';
+
+ReactGA.initialize('UA-133681031-1');
+ReactGA.pageview(window.location.pathname + window.location.search);
+
+const history = createHistory()
+history.listen((location, action) => {
+  ReactGA.set({ page: location.pathname });
+  ReactGA.pageview(location.pathname);
+});
+
 export default function App() {
     return (
       <div>
-        <BrowserRouter>
+        <Router history={history}>
           <div>
               <NavBar />
               <Player />
@@ -22,7 +33,7 @@ export default function App() {
                 </Switch>
               </div>
           </div>
-        </BrowserRouter>
+        </Router>
       </div>
     );
 }
