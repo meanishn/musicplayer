@@ -17,6 +17,7 @@ class Player extends Component{
         this.onTrackSelect = this.onTrackSelect.bind(this);
         this.onPlayerLoaded = this.onPlayerLoaded.bind(this);
         this.onClickPlaylistMenu = this.onClickPlaylistMenu.bind(this);
+        this.clearPlaylist = this.clearPlaylist.bind(this)
     }
     componentDidMount() {
         // this.props.setPlaylist();
@@ -62,6 +63,12 @@ class Player extends Component{
     setPlaylist() {
         this.aplayer.addMusic(this.props.playList);
     }
+
+    clearPlaylist() {
+        this.aplayer.clearPlaylist()
+        this.props.setPlaylist([])
+        // this.aplayer.destroy()
+    }
     render() {
         const defaults = {
             narrow: false,
@@ -75,7 +82,7 @@ class Player extends Component{
             <div>
                 <VelocityTransitionGroup component="div" enter={{animation: 'slideDown'}} leave={{animation: 'slideUp'}} runOnMount>
                     {this.state.showPlaylist ? 
-                        <PlayList togglePlaylist={this.onClickPlaylistMenu} playList={this.props.playList} currentPlaying={this.props.currentTrack || this.props.playList[0]} onTrackSelect={this.onTrackSelect}/>    
+                        <PlayList togglePlaylist={this.onClickPlaylistMenu} clearPlaylist={this.clearPlaylist} playList={this.props.playList} currentPlaying={this.props.currentTrack || this.props.playList[0]} onTrackSelect={this.onTrackSelect}/>    
                     : undefined}
                 </VelocityTransitionGroup> 
                 

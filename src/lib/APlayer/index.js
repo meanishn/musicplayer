@@ -923,6 +923,18 @@ export default class APlayer {
         this.setMusic(0);
     }
 
+    clearPlaylist() {
+        this.pause();
+        this.audio.currentTime=0
+        this.audios = []
+        this.option.music = [];
+        this.audio.src = " ";
+        clearInterval(this.playedTime);
+        this.element.getElementsByClassName('aplayer-title')[0].innerHTML = '';
+        this.element.getElementsByClassName('aplayer-author')[0].innerHTML = '';
+        this.updateBar('loaded', 0, 'width');
+        this.element.getElementsByClassName('aplayer-dtime')[0].innerHTML = this.secondToTime(0)
+    }
     next() {
         if (this.playIndex < this.option.music.length - 1) {
             this.setMusic(++this.playIndex);

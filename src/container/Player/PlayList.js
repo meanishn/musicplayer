@@ -75,6 +75,9 @@ export default class PlayList extends Component {
                     <div className="playlist-header py-1">
                         <div className="d-flex">
                             <h6 className="px-2 mt-2 mb-0">PlayList</h6>
+                            <div className="clear-playlist ml-auto mt-2 mb-0"
+                                onClick={() => this.props.clearPlaylist()}
+                            >Clear</div>
                             <div className="hide-playlist ml-auto mt-2 px-2"
                                 onClick={() => this.props.togglePlaylist()}
                             >

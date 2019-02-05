@@ -243,6 +243,13 @@ td:first-of-type, td:first-of-type > div {
     cursor: pointer;
     font-size: 15px;
 }
+.clear-playlist {
+    line-height: 1;
+    padding: 3px 10px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
 .mini-playlist {
     position: absolute;
     width: 100%;
