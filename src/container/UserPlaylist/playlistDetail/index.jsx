@@ -22,18 +22,18 @@ const getItemStyle = (isDragging, draggableStyle) => ({
 
 export default (props) => {
     return (
-        <div className="artist-page artist-playlist-page">
-        <div className="top-wrapper" style={{backgroundColor : props.currentPlaylist.color[3]}}>
+        <div className="container artist-page artist-playlist-page">
+        <div className="row top-wrapper">
             <h2>{props.currentPlaylist.name}</h2>
             <span>{props.currentPlaylist.tracks.length} tracks</span>
             <div className="remove-playlist-container">
                 <Button
                     className="playall-btn"
                     color="default"
-                    style={{backgroundColor: 'rgba(0,0,0,0.24)', marginTop: '10px'}}
+                    style={{backgroundColor: 'rgba(213, 190, 190, 0.24)', marginTop: '10px'}}
                     onClick={(e) => props.removePlaylist(props.match.params.playlistId)}
                 >
-                    Remove playlist
+                    Remove
                     <span style={{'margin-left': '10px'}}><i className="fa fa-times" /></span>
                 </Button>
             </div>

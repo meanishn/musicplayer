@@ -18,15 +18,15 @@
 }
 .tag {
     margin-right: 20px;
-    // margin-top: 5px;
     margin-bottom: 5px;
     color: #8d8d8d;
-    font-size: 12px;
+    font-size: 13px;
     flex-shrink: 0;
     padding: 5px 10px;
-    border: 1px solid #e5e5e5;
-    border-radius: 12px;
+    border: 1px solid #2e3945;
+    border-radius: 5px;
 }
+
 .track-title {
     .title-block {
         display: flex;
@@ -38,8 +38,8 @@
         overflow: hidden;
         max-width: 100%;
         display: block;
-        color: #90909d;
-        font-weight: 700;
+        color: #dddde3;
+        font-weight: 500;
     }
 }
 

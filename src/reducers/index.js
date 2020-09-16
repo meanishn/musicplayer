@@ -2,6 +2,8 @@ import { combineReducers } from 'redux';
 import {playerReducer, newPlayerReducer} from '../container/Player/reducers';
 import userPlaylistReducer from '../data/userPlaylist/reducers';
 import artistPlaylistReducer from '../data/playlist/reducers';
+import uiReducer from '../data/ui/reducers';
+import searchReducer from '../container/SearchResult/reducer';
 import { artistReducer } from '../container/Artists/reducers';
 
 const rootReducer = combineReducers({
@@ -9,7 +11,9 @@ const rootReducer = combineReducers({
   tracks: newPlayerReducer,
   userPlaylist: userPlaylistReducer,
   playlists: artistPlaylistReducer,
-  artists: artistReducer
+  artists: artistReducer,
+  view: uiReducer,
+  searchResults: searchReducer
 });
 
 // const obj = {

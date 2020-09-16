@@ -40,13 +40,13 @@ class HompePage extends Component {
                             <div className="inner-card-item">
                                 {
                                     this.props.artists.allIds.map(id =>
-                                        <Link to={`/artists/${id}`}>
+                                        <Link to={`/artists/${this.props.artists.byId[id].name}`}>
                                         <Card 
                                             key={id} 
                                             id={id} 
                                             avatar={this.props.artists.byId[id].avatar}
                                             title={this.props.artists.byId[id].name}
-                                            link={`/artists/${id}`}
+                                            link={`/artists/${this.props.artists.byId[id].name}`}
                                         />
                                         </Link>
                                     )

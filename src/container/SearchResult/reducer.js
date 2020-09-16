@@ -1,13 +1,13 @@
-const initialState= {
-   searchTerm: ''
+const initialState = {
+    results: []
 }
 
 export default function (state=initialState, action) {
     switch (action.type) {
-        case 'SET_SEARCH_TERM':
+        case 'SEARCH_RESULT':
             return {
                 ...state,
-                searchTerm: action.payload.searchTerm
+                results: action.payload
             }
         default:
             return state;

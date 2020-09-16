@@ -7,6 +7,7 @@ import Player from '../Player';
 import UserPlaylist from '../UserPlaylist';
 import NavBar from '../../components/navbar';
 import Artists from '../Artists';
+import SearchResult from '../SearchResult';
 
 const history = createHistory()
 if (process.env.NODE_ENV === 'production') {
@@ -29,9 +30,11 @@ export default function App() {
               {/* <Sidebar /> */}
               <div className="main-area">
                 <Switch>
-                  <Route path="/artists/:id" component={Artists} />
+                  <Route path="/artists/:name" component={Artists} />
                   <Route path="/playlists" component={UserPlaylist} />
+                  <Route path="/search" component={SearchResult} />
                   <Route path="/" component={HomePage} />
+
                 </Switch>
               </div>
           </div>

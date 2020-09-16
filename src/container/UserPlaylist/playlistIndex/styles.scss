@@ -8,4 +8,18 @@
             display: flex;
         }
     }
+
+    .inner-card-item {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        >a {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        @media (min-width: 700px){
+            justify-content: start;
+        }
+    }
 }

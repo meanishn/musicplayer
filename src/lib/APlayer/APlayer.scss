@@ -198,11 +198,11 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
             padding-bottom: 2px;
 
             .aplayer-title {
-                font-size: 14px;
+                font-size: 17px;
             }
 
             .aplayer-author {
-                font-size: 12px;
+                font-size: 14px;
                 color: #666;
             }
         }
@@ -262,7 +262,7 @@ $aplayer-height-lrc: $aplayer-height + $lrc-height - 6;
                 bottom: 3px;
                 height: 17px;
                 color: #999;
-                font-size: 11px;
+                font-size: 14px;
                 padding-left: 7px;
 
                 .aplayer-time-inner {

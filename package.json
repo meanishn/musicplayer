@@ -1,7 +1,7 @@
 {
   "name": "redux-simple-starter",
   "version": "1.0.0",
-  "description": "Simple starter package for Redux with React and Babel support",
+  "description": "Trance it REST Api",
   "main": "index.js",
   "repository": "git@github.com:StephenGrider/ReduxSimpleStarter.git",
   "scripts": {
@@ -47,11 +47,13 @@
     "flat-colors": "^3.3.10",
     "history": "^4.7.2",
     "lodash": "^4.0.0",
+    "qs": "^6.9.4",
     "react": "^16.2.0",
     "react-aplayer": "^0.1.2",
     "react-beautiful-dnd": "^8.0.5",
     "react-dom": "^16.2.0",
     "react-ga": "^2.5.7",
+    "react-paginate": "^6.4.0",
     "react-redux": "^5.0.6",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.2.2",

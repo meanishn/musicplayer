@@ -15,23 +15,27 @@ export default (props) => {
     return (
         <div className="container user-playlist-container">
             <div className="wrapper">
-                <h2 className="mb-5">Playlists</h2>
-                {/* <ArtistPlaylist
-                    artistId={this.props.match.params.id}
-                    playlists={this.props.artist.playlists}
-                /> */}
-                <div className="inner-card-item">
-                {props.playlists.map(playlist =>
-                    <Link to={`/playlists/${playlist.id}`} >
-                        <Card 
-                            title={playlist.name}
-                            subtitle={playlist.tracks.length > 1 ? `${playlist.tracks.length} tracks` : `${playlist.tracks.length} track`}
-                            link={`/playlists/${playlist.id}`}
-                            bgColor={playlist.color[3]}
-                        />
-                    </Link>
-                )}
+                <div className="card dark-card">
+                    <div className="card-header">
+                        <h5 className="mb-0">Playlists</h5>
+                    </div>
+                    <div className="card-body">
+                        <div className="inner-card-item">
+                            {props.playlists.map(playlist =>
+                                <Link to={`/playlists/${playlist.id}`} >
+                                    <Card 
+                                        title={playlist.name}
+                                        subtitle={playlist.tracks.length > 1 ? `${playlist.tracks.length} tracks` : `${playlist.tracks.length} track`}
+                                        link={`/playlists/${playlist.id}`}
+                                        bgColor={playlist.color[3]}
+                                    />
+                                </Link>
+                            )}
+                        </div>
+                    </div>
                 </div>
+                
+                
             </div>
         </div>
 

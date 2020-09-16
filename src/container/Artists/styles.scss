@@ -3,18 +3,18 @@
         margin-bottom: 2px;
         font-weight: 700;
         @media screen and (max-width: 600px){
-            font-size: 16px;
+            font-size: 1.5em;
         }
     }
     .track-item {
         display: flex;
         justify-content: space-between;
-        padding: 20px;
+        padding: 15px 10px;
         align-items: center;
         transition: all 0.15s linear;
-        border-bottom: 1px solid #e9ecef;
+        border-bottom: 1px solid #2e3945;
         &:hover {
-            background: #e9ecef;
+            background: #1f2933;
             cursor: pointer;
         }
         // &:nth-of-type(odd) {
@@ -24,13 +24,12 @@
     .profile-box {
         position: relative;
         text-align: center;
-        padding: 25px;
-        height: 200px;
+        padding: 80px 25px;
+        // height: 200px;
         box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.04);
-        background-color: #394d62;
+        background-color: #1f2933;
         background-position: center;
         color: #fff;
-        z-index: 1;
         display: flex;
         vertical-align: middle;
         justify-content: center;
@@ -44,22 +43,18 @@
 
             .public-link {
                 color: #fff;
-                font-size: 12px;
+                font-size: 1em;
             }
         }
     }
 
     .tracks-wrapper {
-        // box-shadow: 0px 2px 5px rgba(0,0,0,0.04);
-        padding: 0px 30px;
         // border-radius: 5px;
         position: relative;
-        // top: -55px;
-        // background: #191a2c;
 
-        @media screen and (max-width: 600px) {
-            padding: 15px 5px;
-        }
+        // @media screen and (max-width: 600px) {
+        //     padding: 15px 5px;
+        // }
     }
 
     .track-title {
@@ -83,11 +78,11 @@
         padding: 8px;
         margin-top: 15px;
         margin-bottom: 15px;
-        border-bottom: 1px solid #e9ecef;
+        //border-bottom: 1px solid #e9ecef;
         flex-wrap: wrap;
         justify-content: space-between;
         vertical-align: middle;
-        box-shadow: 0 4px 20px -2px rgba(0,0,0,.2);
+        // box-shadow: 0 4px 20px -2px rgba(0,0,0,.2);
         .search-filter-container {
             position: relative;
             span {
@@ -130,13 +125,14 @@
     }
 
     .playall-btn {
-        min-width: 110px;
-        height: 30px;
-        font-size: 14px;
+        min-width: 160px;
+        height: 50px;
+        font-size: 18px;
         line-height: 15px;
         background-color: #ee3b50;
-        color: #f9f9f9;
+        color: #fff;
         border-radius: 30px;
+        font-weight: 700;
     }
     .add-to-playlist-btn {
         border-radius: 50%;
@@ -154,11 +150,43 @@
         // background: #f4f4f4;
         padding: 25px;
     }
+
+    .pagination {
+        justify-content: center;
+
+        li {
+            border: 1px solid #2e3945;
+            flex: 1 1 0%;            
+
+            &.active {
+                border-color: #ededed;
+            }
+
+            >a {
+                display: block;
+                padding: 10px 10px;
+            }
+
+            &:hover {
+                background-color: #2e3945;
+            }
+        }
+
+        @media (min-width: 700px) {
+            li {
+                flex: 0;
+                > a{
+                    padding: 10px 32px;
+                }
+            }            
+        }
+       
+    }
 }
 .simple-modal {
     .modal-header {
-        height: 90px;
-        background: #9b2dbe;
+        height: 70px;
+        background: #243242;
         color: #fff;
     }
     .modal-body {
@@ -194,5 +222,12 @@
                 background: #ededed;
             }
         }
+    }
+    .modal-body-wrapper {
+        padding-bottom: 2em;
+    }
+    .close {
+        color: #fff;
+        font-size: 2em;
     }
 }

@@ -1,21 +1,21 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Switch, Route, Link} from 'react-router-dom';
-import { ListGroup, ListGroupItem } from 'reactstrap';
 import { Button } from 'reactstrap';
-import classnames from 'classnames';
+import ReactPaginate from 'react-paginate'; 
 
-import Card from '../../components/Card';
 import SimpleModal from '../../components/SimpleModal';
 import Track from '../../components/track';
 import Tabs from './components/tabs';
 import ArtistPlaylist from './components/artistPlaylist';
 import ArtistList from './components/artistList';
 
-import {fetchArtist, filter} from './actions';
+import {fetchArtist, filter, setPage} from './actions';
 import {setPlaylist, playTrack} from '../Player/actions';
 import {createPlaylist, addPlaylistItems} from '../../data/userPlaylist/actions';
 import {fetchArtistPlaylists} from '../../data/playlist/actions';
+
+import {throttle} from 'lodash';
 
 import './styles.scss';
 
@@ -28,7 +28,9 @@ class ArtistDetail extends React.Component {
             userPlaylist: '',
             activeTab: '1',
             searchText: '',
-            tracks: this.props.tracks
+            tracks: this.props.tracks,
+            perPage: 20,
+            offset: 0
         }
         this.toggleModal = this.toggleModal.bind(this);
         this.playTrack = this.playTrack.bind(this);
@@ -36,10 +38,11 @@ class ArtistDetail extends React.Component {
         this.onChange = this.onChange.bind(this);
         this.onFilter = this.onFilter.bind(this);
         this.addToPlaylist = this.addToPlaylist.bind(this);
+        this.handlePageClick = this.handlePageClick.bind(this);
     }
 
     componentDidMount() {
-        this.props.fetchArtist(this.props.match.params.id);
+        this.props.fetchArtist(this.props.match.params.name, this.state.perPage, this.state.offset);
     }
     componentDidUpdate(prevProps, prevState) {
         if (this.state.activeTab === '2' && this.state.activeTab !== prevState.activeTab) {
@@ -99,7 +102,7 @@ class ArtistDetail extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-        this.props.filter(term);
+        this.props.filter(this.state.searchText);
     }
 
     setUserPlaylist(playlistId) {
@@ -124,14 +127,18 @@ class ArtistDetail extends React.Component {
     renderUserPlaylist() {
         const playlist = this.props.userPlaylist;
         return (
-            <ul className="user-playlists">
-                {playlist.allIds.map(id =>
-                    <li 
-                        className="playlist-title"
-                        onClick={() => this.setUserPlaylist(id)}>{playlist.byId[id].name}
-                    </li>
-                )}
-            </ul>
+            <div className="modal-body-wrapper">
+                <h5>Select Playlist</h5>
+                <ul className="user-playlists">
+                    {playlist.allIds.map(id =>
+                        <li 
+                            className="playlist-title"
+                            onClick={() => this.setUserPlaylist(id)}>{playlist.byId[id].name}
+                        </li>
+                    )}
+                </ul>
+            </div>
+            
         )
     }
 
@@ -149,7 +156,7 @@ class ArtistDetail extends React.Component {
                 <Button
                     className="add-to-playlist-btn"
                     color="success"
-                    onClick={this.createPlaylist.bind(this)}                    
+                    onClick={this.createPlaylist.bind(this)}
                 >Add</Button>
             </div>
         );
@@ -160,13 +167,21 @@ class ArtistDetail extends React.Component {
             activeTab: tabId
         })
     }
+
+    handlePageClick = (data) => {
+        let selected = data.selected;
+        let offset = Math.ceil(selected * this.state.perPage);
+        this.props.setPage(this.state.perPage, offset);
+        this._trackDiv.scrollIntoView();
+    };
+
     render() {
         if (!this.props.artist) {
             return (
                 <div>Loading </div>
             );
         }
-
+        const pageCount = Math.ceil(this.props.trackCount / 20);
         const extraProps = {playTrack: this.playTrack, playTracks: this.playTracks, onChange: this.onChange, addToPlaylist: this.addToPlaylist}
         return (
             <div>
@@ -188,18 +203,18 @@ class ArtistDetail extends React.Component {
                                     <h2 className="artist-name">{this.props.artist.name}</h2>
                                     <div className="public-links">
                                         {this.props.artist.public_profiles && JSON.parse(this.props.artist.public_profiles).map(link =>
-                                            <a className="public-link" href={link}>{link}</a>
+                                            <a className="public-link" href={link} target="_blank" rel="noopener noreferrer">{link}</a>
                                         )}
                                     </div>
                                     <Button
                                         className="playall-btn"
                                         onClick={() => this.playTracks(this.props.artist.tracks)}
-                                        color="default">Play all
+                                        color="default">Play All
                                         <span style={{'margin-left': '10px'}}><i className="fa fa-play" /></span>
                                     </Button>
                                 </div>
                             </div>
-                            <div className="tracks-wrapper">
+                            <div className="tracks-wrapper" ref={(ref) => this._trackDiv = ref}>
                                 <div className="action-container">
                                     <Button
                                         color="secondary"
@@ -239,35 +254,23 @@ class ArtistDetail extends React.Component {
                                                 playTrack={this.playTrack}
                                                 onChange={this.onChange.bind(this)}
                                             />
-                                        )}                    
-                                    </div>
-                                }
-                                {this.state.activeTab === '2' &&
-                                    <div className="artist-playlist-container">
-                                        <h2 className="mb-5">Playlists</h2>
-                                        {/* <ArtistPlaylist
-                                            artistId={this.props.match.params.id}
-                                            playlists={this.props.artist.playlists}
-                                        /> */}
-                                        <div className="inner-card-item">
-                                        {this.props.artistPlaylists.map(playlist =>
-                                            <Link to={`/artists/${this.props.artist.id}/playlists/${playlist.id}`} >
-                                                <Card 
-                                                    title={playlist.name}
-                                                    link={`/artists/${this.props.artist.id}/playlists/${playlist.id}`}
-                                                    avatar={this.props.artist.avatar}
-                                                />
-                                            </Link>
                                         )}
-                                        </div>
-                                    </div>
-                                }
-                                {this.state.activeTab === '3' &&
-                                    <div className="artist-series-container">
-                                        {/* <ArtistSeries
-                                            series={this.props.artist.series}
-                                        /> */}
-                                        <h2>Series</h2>
+                                        {this.props.tracks.length > 0 &&
+                                        <ReactPaginate
+                                            previousLabel={'<'}
+                                            nextLabel={'>'}
+                                            breakLabel={'...'}
+                                            breakClassName={'break-me'}
+                                            pageCount={pageCount}
+                                            marginPagesDisplayed={2}
+                                            pageRangeDisplayed={2}
+                                            onPageChange={this.handlePageClick}
+                                            containerClassName={'pagination'}
+                                            subContainerClassName={'pages pagination'}
+                                            activeClassName={'active'}
+                                        />
+                                        }
+                                                            
                                     </div>
                                 }
                             </div>
@@ -307,7 +310,7 @@ function selectPlaylist(state, artistId) {
     return artist.playlist.map(pid =>state.playlists.byId[pid]);
 }
 
-function getFiltered(tracks, term) {
+function getFiltered(tracks, term, perPage, offset) {
     if (!term)  {
         return tracks;
     }
@@ -322,16 +325,25 @@ function getTracks(state, artistId) {
     if (!artist || !artist.tracks) {
         return [];
     }
-    return getFiltered(artist.tracks, state.artists.filterTerm);
+    const {perPage, offset} = state.artists.pagination;
+    const finalData = getFiltered(artist.tracks, state.artists.filterTerm);
+    return {
+        tracks: finalData.slice(offset, offset + perPage),
+        totalCount: finalData.length
+    }
 }
 
 function mapStateToProps(state, props) {
-    const artistId = props.match.params.id
+    const artistName = props.match.params.name;    
+    const artist = state.artists.byName[artistName];
+    const artistId = artist ? artist.id : null;
+    const trackData = getTracks(state, artistId);
     return {
-        artist: state.artists.byId[artistId],
-        tracks: getTracks(state, artistId),
+        artist,
+        tracks: trackData.tracks,
         artistPlaylists: selectPlaylist(state, artistId),
-        userPlaylist: state.userPlaylist
+        userPlaylist: state.userPlaylist,
+        trackCount: trackData.totalCount
     }
 }
 export default connect(mapStateToProps, {
@@ -341,5 +353,6 @@ export default connect(mapStateToProps, {
     playTrack,
     createPlaylist,
     addPlaylistItems,
-    filter
+    filter,
+    setPage
 })(ArtistDetail);
